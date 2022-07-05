@@ -7,6 +7,11 @@ import PortableText from "react-portable-text";
 //using react-hook-form
 import { useForm, SubmitHandler } from "react-hook-form";
 
+// import the icons you need
+import { faLinkedin, faGithub, faFacebook, faWhatsapp, faGoogle, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import userData from "../../constants/data";
+
 interface IFormInput {
   _id: string;
   name: string;
@@ -46,10 +51,21 @@ function post({ post }: Props) {
   }
 
   return (
-    <ContainerBlock>
+    <ContainerBlock title={post.title}>
       {/* Header Section */}
       <div className="max-w-7xl mx-auto">
-        <article className="max-w-4xl mx-auto p-5">
+
+      {/* Sticky Social Media Column */}
+      <div className="static w-12 sticky top-5 flex justify-center align-center">
+        <ul className="bg-blue-100 p-2 flex flex-col space-y-2">
+           <a href={userData.socialLinks.linkedin}><li className="bg-blue-500 rounded-2 p-2"><FontAwesomeIcon icon={faLinkedin} size="2x" color="white" /></li></a>
+           <a href={userData.socialLinks.github}><li className="bg-black rounded-2 p-2"><FontAwesomeIcon icon={faGithub} size="2x" color="white" /></li></a>
+           <a href={userData.socialLinks.twitter}><li className="bg-blue-600 rounded-2 p-2"><FontAwesomeIcon icon={faTwitter} size="2x" color="white" /></li></a>
+           <a href={userData.socialLinks.instagram}><li className="bg-red-600 rounded-2 p-2"><FontAwesomeIcon icon={faInstagram} size="2x" color="white" /></li></a>
+        </ul>
+      </div>
+
+        <article className="max-w-4xl mx-auto -mt-60 p-5">
           <h1 className="text-5xl text-center font-bold mb-8 font-sans">{post.title}</h1>
           <h3 className="text-center uppercase text-gray-500 my-5">{new Date(post._createdAt).toLocaleDateString()} - 3 min read</h3>   
           <img
